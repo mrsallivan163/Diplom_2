@@ -11,7 +11,7 @@ class TestCreateUser:
 
     @allure.description('Создание нового пользователя')
     @allure.title('Создание нового пользователя в системе')
-    def test_create_new_user_success_when_fill_all_fields(self):
+    def test_create_new_user_success_when_fill_all_fields(self, registered_user):
         payload = create_user_data()
         r = requests.post(f'{URL.MAIN_URL}{API.CREATE_USER}', payload)
         assert r.status_code == 200
