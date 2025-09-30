@@ -1,11 +1,11 @@
-class RESPONSE_TEXT():
+class RESPONSE_TEXT:
     LOGIN_USED = "User already exists"
     MISSING_REQUIRED_FIELD = "Email, password and name are required fields"
     FAILED_LOGIN = "email or password are incorrect"
     NON_AUTHORIZED = 'You should be authorised'
     EMPTY_LIST_INGREDIENTS = 'Ingredient ids must be provided'
 
-class TEST_DATA():
+class TEST_DATA:
     INVALID_LOGIN_DATA =  {
             "email": " ",
             "password": " "

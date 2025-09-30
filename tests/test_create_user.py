@@ -33,9 +33,9 @@ class TestCreateUser:
     @allure.title('Создание пользователя без обязательного поля')
     @pytest.mark.parametrize(
         'payload', [
-            {"email": "Vova123", "name": "Vovka"},
-            {"password": "1234567", "name": "Vovka"},
-            {"email": "Vova123", "password": "1234"}
+            {"email": create_user_data()['email'], "name": create_user_data()['name']},
+            {"password": create_user_data()['password'], "name": create_user_data()['name'] },
+            {"email": create_user_data()['email'], "password": create_user_data()['password']}
         ]
     )
     def test_create_user_missing_required_field(self, payload):
