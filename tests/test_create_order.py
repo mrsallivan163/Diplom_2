@@ -6,7 +6,7 @@ from config.settings import API, URL
 
 
 @allure.suite('Создание заказа ')
-class TestChangeUserData():
+class TestChangeUserData:
 
     @allure.description('Проверка создания заказа с ингредиентами, если пользователь авторизован в системе')
     @allure.title('Создание заказа с ингредиентами под авторизованным пользователем')

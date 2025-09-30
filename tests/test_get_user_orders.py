@@ -6,7 +6,7 @@ from config.settings import API, URL
 
 
 @allure.suite('Получение заказов пользователя')
-class TestGetUserOrders():
+class TestGetUserOrders:
 
     @allure.description("Проверка получения списка заказов пользователя, если он авторизован")
     @allure.title("Получение заказов пользователя(авторизован)")

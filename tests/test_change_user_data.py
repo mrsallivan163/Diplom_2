@@ -8,7 +8,7 @@ from config.settings import API, URL
 
 
 @allure.suite('Изменение данных пользователя')
-class TestChangeUserData():
+class TestChangeUserData:
 
     @pytest.mark.parametrize("field", ["name", "email", "password"])
     @allure.description("Авторизованный пользователь может успешно изменить значение своего {field}")

@@ -7,7 +7,7 @@ from config.test_api_data import RESPONSE_TEXT
 
 
 @allure.suite('Создание пользователя')
-class TestCreateUser():
+class TestCreateUser:
 
     @allure.description('Создание нового пользователя')
     @allure.title('Создание нового пользователя в системе')

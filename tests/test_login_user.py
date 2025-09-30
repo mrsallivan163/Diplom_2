@@ -4,7 +4,7 @@ from config.settings import API, URL
 from config.test_api_data import RESPONSE_TEXT, TEST_DATA
 
 @allure.suite('Авторизация пользователя')
-class TestLoginUser():
+class TestLoginUser:
 
     @allure.description('Успешная авторизация пользователя')
     @allure.title('Авторизация пользователя с валидными данными')
