@@ -10,8 +10,8 @@ class TestLoginUser:
     @allure.title('Авторизация пользователя с валидными данными')
     def test_login_user_success_when_with_valid_login_data(self, registered_user):
         payload = {
-            "email": registered_user["email"],
-            "password": registered_user["password"]
+            "email": registered_user["data"]["user"]["email"],
+            "password": registered_user["payload"]["password"]
         }
         r = requests.post(f'{URL.MAIN_URL}{API.LOGIN_USER}', payload)
         assert r.status_code == 200

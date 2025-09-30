@@ -12,18 +12,19 @@ class TestCreateUser:
     @allure.description('Создание нового пользователя')
     @allure.title('Создание нового пользователя в системе')
     def test_create_new_user_success_when_fill_all_fields(self, registered_user):
-        payload = create_user_data()
-        r = requests.post(f'{URL.MAIN_URL}{API.CREATE_USER}', payload)
-        assert r.status_code == 200
-        assert r.json()['success'] == True
+        response = registered_user['response']
+        data = registered_user['data']
+        assert response.status_code == 200
+        assert data['success'] == True
+
 
     @allure.description('При создании раннее зарегистрированного пользователя вернётся код ответа 403 Forbidden ')
     @allure.title('Создание пользователя ранее зарегистрированного в системе')
     def test_not_create_two_identical_user(self, registered_user):
         payload = {
-            "email": registered_user["email"],
-            "password": registered_user["password"],
-            "name": registered_user["name"]
+            "email": registered_user["data"]["user"]["email"],
+            "password": registered_user["payload"],
+            "name": registered_user["data"]["user"]["name"]
         }
         r = requests.post(f'{URL.MAIN_URL}{API.CREATE_USER}', payload)
         assert r.status_code == 403

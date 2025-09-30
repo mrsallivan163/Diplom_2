@@ -11,7 +11,7 @@ class TestChangeUserData:
     @allure.description('Проверка создания заказа с ингредиентами, если пользователь авторизован в системе')
     @allure.title('Создание заказа с ингредиентами под авторизованным пользователем')
     def test_create_order_is_auth(self, registered_user):
-        headers = {'Authorization': registered_user['auth_token']}
+        headers = {'Authorization':f'{registered_user['data']['accessToken']}'}
         payload = TEST_DATA.VALID_INGREDIENTS
         r = requests.post(f'{URL.MAIN_URL}{API.CREATE_ORDER}', payload, headers=headers)
         assert r.status_code == 200
@@ -30,7 +30,7 @@ class TestChangeUserData:
     @allure.description('Если не передать ни один ингредиент, вернётся код ответа 400 Bad Request')
     @allure.title('Создание заказа с ингредиентами под авторизованным пользователем')
     def test_create_order_is_auth_with_empty_list_ingredients(self, registered_user):
-        headers = {'Authorization': registered_user['auth_token']}
+        headers = {'Authorization':f'{registered_user['data']['accessToken']}'}
         payload = TEST_DATA.EMPTY_LIST_INGREDIENTS
         r = requests.post(f'{URL.MAIN_URL}{API.CREATE_ORDER}', payload, headers=headers)
         assert r.status_code == 400
@@ -39,7 +39,7 @@ class TestChangeUserData:
     @allure.description('Если в запросе передан невалидный хеш ингредиента, вернётся код ответа 500Internal Server Error')
     @allure.title('Создание заказа с невалидным хэшом игрединета')
     def test_create_order_is_auth_with_invalid_hash_ingredient(self, registered_user):
-        headers = {'Authorization': registered_user['auth_token']}
+        headers = {'Authorization':f'{registered_user['data']['accessToken']}'}
         payload = TEST_DATA.INVALID_INGREDIENTS
         r = requests.post(f'{URL.MAIN_URL}{API.CREATE_ORDER}', payload, headers=headers)
         assert r.status_code == 500

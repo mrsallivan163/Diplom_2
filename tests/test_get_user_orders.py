@@ -11,13 +11,12 @@ class TestGetUserOrders:
     @allure.description("Проверка получения списка заказов пользователя, если он авторизован")
     @allure.title("Получение заказов пользователя(авторизован)")
     def  test_get_user_orders_if_auth(self, registered_user):
-        headers = {'Authorization': registered_user['auth_token']}
+        headers = {'Authorization':f'{registered_user['data']['accessToken']}'}
         payload = TEST_DATA.VALID_INGREDIENTS
         r_create_order = requests.post(f"{URL.MAIN_URL}{API.CREATE_ORDER}", payload, headers=headers)
         r_get_order = requests.get(f"{URL.MAIN_URL}{API.GET_ORDERS}", headers=headers)
         assert r_get_order.status_code == 200
         assert r_get_order.json()['orders'][0]['number'] == r_create_order.json()['order']['number']
-
 
     @allure.description("Проверка получения списка заказов пользователя, если он НЕ авторизован")
     @allure.title("Получение заказов пользователя(не авторизован)")

@@ -16,7 +16,7 @@ class TestChangeUserData:
     def test_changing_user_data_if_user_auth(self, registered_user, field):
         new_value = create_user_data()[field]
         payload = {field: new_value}
-        headers = {'Authorization': registered_user['auth_token']}
+        headers = {'Authorization':f'{registered_user['data']['accessToken']}'}
         r = requests.patch(f'{URL.MAIN_URL}{API.CHANGE_USER_DATA}', payload, headers=headers)
         assert r.status_code == 200
         assert r.json().get('success') is True
